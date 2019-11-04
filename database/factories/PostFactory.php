@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Post;
 use Faker\Generator;
 
 /*
@@ -14,10 +14,10 @@ use Faker\Generator;
 |
 */
 
-$factory->define(User::class, function(Generator $faker) {
+$factory->define(Post::class, function(Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
+        'title' => $faker->sentence,
+        'slug' => $faker->slug,
+        'intro' => $faker->paragraph,
     ];
 });

@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix("/admin")->namespace("Admin\\")->group(function() {
-    Route::prefix("/pages")->namespace("Pages\\")->group(function() {
-        Route::get("/", "ViewPages@handle");
+Route::prefix('/admin')->namespace('Admin\\')->group(function() {
+    Route::prefix('/posts')->namespace('Posts\\')->group(function() {
+        Route::get('/', 'ViewPosts@handle');
     });
 });
