@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/admin')->namespace('Admin\\')->group(function() {
-    Route::prefix('/posts')->namespace('Posts\\')->group(function() {
+Route::prefix('/admin')->namespace('Admin\\')->name('admin.')->group(function() {
+    Route::prefix('/posts')->namespace('Posts\\')->name('posts.')->group(function() {
         Route::get('/', 'ViewPosts@handle');
+        Route::get('/{post}/edit', 'EditPost@handle')->name('edit-post');
     });
 });

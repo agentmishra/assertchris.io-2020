@@ -5,6 +5,7 @@
     @foreach ($posts as $post)
         <div>
             {{ $post->title }}
+            <a href="{{ route('admin.posts.edit-post', $post) }}">edit</a>
         </div>
     @endforeach
     {{ $posts->links('vendor/pagination/simple-default') }}
