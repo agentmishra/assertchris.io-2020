@@ -7,6 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'assertchris.io') }}</title>
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        @livewireAssets
     </head>
     <body>
         @yield('content')
