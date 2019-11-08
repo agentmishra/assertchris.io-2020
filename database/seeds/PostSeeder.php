@@ -14,14 +14,14 @@ class PostSeeder extends Seeder
                 'heading_level' => 1,
                 'heading_content' => 'A brand new post',
                 'post_id' => $post->id,
-                'order' => 1,
+                'position' => 1,
             ]);
 
             Block::create([
                 'type' => 'text',
                 'text_content' => 'time to write...',
                 'post_id' => $post->id,
-                'order' => 2,
+                'position' => 2,
             ]);
         });
     }

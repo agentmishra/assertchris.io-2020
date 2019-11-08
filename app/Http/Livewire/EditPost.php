@@ -38,7 +38,6 @@ class EditPost extends Component
     public function updateBlockField($id, $field, $value)
     {
         $block = $this->post->blocks()->find($id);
-
         $block->{$field} = $value;
         $block->save();
 
@@ -50,21 +49,18 @@ class EditPost extends Component
         $block = $this->post->blocks()->find($id);
         $block->delete();
 
-        $this->orderBlocks();
-
+        $this->reposition();
         $this->update();
     }
 
-    public function addBlockAt($order, $type, $variation = null)
+    public function addBlock($position, $type, $variation = null)
     {
-        // dd($order, $type,  $variation);
-
         if ($type == 'heading') {
             $block = Block::create([
                 'type' =>  'heading',
                 'heading_level' => $variation,
                 'heading_content' => 'A new heading',
-                'order' =>  $order,
+                'position' =>  $position,
                 'post_id' =>  $this->post->id,
             ]);
         }
@@ -73,20 +69,20 @@ class EditPost extends Component
             $block = Block::create([
                 'type' =>  'text',
                 'text_content' => 'Some new text',
-                'order' =>  $order,
+                'position' =>  $position,
                 'post_id' =>  $this->post->id,
             ]);
         }
 
-        // increase the order of each subsequent block
-        Block::where('id', '!=', $block->id)->where('order', '>=', $order)->increment('order');
+        // increase the position of each subsequent block
+        Block::where('id', '!=', $block->id)->where('position', '>=', $position)->increment('position');
 
-        $this->orderBlocks();
+        $this->reposition();
     }
 
-    public function orderBlocks() {
-        $this->post->blocks()->orderBy('order', 'asc')->each(function($block, $i) {
-            $block->order = $i + 1;
+    public function reposition() {
+        $this->post->blocks()->orderBy('position', 'asc')->each(function($block, $i) {
+            $block->position = $i + 1;
             $block->save();
         });
     }
@@ -94,7 +90,7 @@ class EditPost extends Component
     public function render()
     {
         $post = $this->post;
-        $blocks = $post->blocks()->orderBy('order', 'asc')->get();
+        $blocks = $post->blocks()->orderBy('position', 'asc')->get();
 
         return view('livewire.edit-post', compact('post', 'blocks'));
     }

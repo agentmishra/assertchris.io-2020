@@ -14,7 +14,7 @@ class CreateBlocksTable extends Migration
             $table->text('heading_content')->nullable();
             $table->enum('heading_level', [1, 2, 3])->default(1);
             $table->text('text_content')->nullable();
-            $table->integer('order')->default(1);
+            $table->integer('position')->default(1);
             $table->timestamps();
 
             $table->bigInteger('post_id')->index();

@@ -10,6 +10,8 @@
         @livewireAssets
     </head>
     <body>
-        @yield('content')
+        <div class="container mx-auto">
+            @yield('content')
+        </div>
     </body>
 </html>

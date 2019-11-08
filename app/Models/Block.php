@@ -11,7 +11,7 @@ class Block extends Model
         'heading_content',
         'heading_level',
         'text_content',
-        'order',
+        'position',
         'post_id',
     ];
 
