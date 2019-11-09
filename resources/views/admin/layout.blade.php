@@ -10,8 +10,10 @@
         @livewireAssets
     </head>
     <body>
-        <div class="container mx-auto">
+        <div class="container mx-auto px-2">
             @yield('content')
+            <script src="{{ mix('js/app.js') }}"></script>
+            @stack('scripts')
         </div>
     </body>
 </html>

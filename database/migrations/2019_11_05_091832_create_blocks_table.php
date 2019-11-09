@@ -10,11 +10,17 @@ class CreateBlocksTable extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('type', ['heading', 'text']);
+            $table->enum('type', ['heading', 'text', 'image', 'note', 'code']);
             $table->text('heading_content')->nullable();
-            $table->enum('heading_level', [1, 2, 3])->default(1);
+            $table->enum('heading_level', [1, 2, 3])->nullable();
             $table->text('text_content')->nullable();
-            $table->integer('position')->default(1);
+            $table->string('image_path')->nullable();
+            $table->enum('image_arrangement', ['full', 'centered'])->nullable();
+            $table->text('image_content')->nullable();
+            $table->text('note_content')->nullable();
+            $table->string('code_language')->nullable();
+            $table->text('code_content')->nullable();
+            $table->integer('position')->nullable();
             $table->timestamps();
 
             $table->bigInteger('post_id')->index();

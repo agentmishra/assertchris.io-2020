@@ -1,74 +1,60 @@
-<div class="flex flex-row w-full items-start justify-start">
-    <div class="flex flex-col w-full md:w-2/3 mb-2 pr-4">
+<div class="flex flex-col lg:flex-row w-full items-start justify-start">
+    <div class="flex flex-col w-full lg:w-2/3 mb-2 lg:pr-8 -ml-8">
         @foreach ($blocks as $block)
             @if ($loop->first)
                 @include('livewire.includes.add-block', [ 'position' => $block->position ])
             @endif
-            <div class="flex flex-row items-center justify-center w-full group relative">
-                <button class="flex w-4 h-4 mr-2 text-gray-400 opacity-0 group-hover:opacity-100" wire:click="removeBlock({{ $block->id }})">
-                    @icon('solid.trash-alt')
-                </button>
+            <div class="flex flex-row items-center justify-center w-full relative group">
+                <div class="flex flex-col mr-2">
+                @include('livewire.includes.actions')
+                </div>
                 @if ($block->type === 'heading')
-                    <input
-                        type="text"
-                        name="heading_content_{{ $block->id }}"
-                        class="
-                            flex w-full font-semibold border-2 border-white group-hover:border-gray-100 p-2 rounded-sm
-                            @if ($block->heading_level == 1)
-                                text-2xl
-                            @endif
-                            @if ($block->heading_level == 2)
-                                text-xl
-                            @endif
-                            @if ($block->heading_level == 3)
-                                text-lg
-                            @endif
-                        "
-                        value="{{ $block->heading_content }}"
-                        wire:change="updateBlockField({{ $block->id }}, 'heading_content', $event.target.value)"
-                    />
+                    @include('livewire.includes.heading-block')
                 @endif
                 @if ($block->type === 'text')
-                    <textarea
-                        type="text"
-                        name="text_content_{{ $block->id }}"
-                        class="flex w-full border-2 border-white group-hover:border-gray-100 p-2 rounded-sm"
-                        wire:change="updateBlockField({{ $block->id }}, 'text_content', $event.target.value)"
-                    >{{ $block->text_content }}</textarea>
+                    @include('livewire.includes.text-block')
+                @endif
+                @if ($block->type === 'image')
+                    @include('livewire.includes.image-block')
+                @endif
+                @if ($block->type === 'note')
+                    @include('livewire.includes.note-block')
+                @endif
+                @if ($block->type === 'code')
+                    @include('livewire.includes.code-block')
                 @endif
             </div>
             @include('livewire.includes.add-block', [ 'position' => $block->position + 1 ])
         @endforeach
     </div>
-    <details class="flex flex-col w-full md:w-1/3 mb-2">
-        <summary>Meta data</summary>
-        <label class="flex flex-col w-full">
-            <span class="flex w-full">title</span>
-            <input
-                type="text"
-                name="title"
-                class="flex w-full"
-                value="{{ $post->title }}"
-                wire:change="updatePostField('title', $event.target.value)"
-            />
-        </label>
-        <label class="flex flex-col w-full">
-            <span class="flex w-full">slug</span>
-            <input
-                type="text"
-                name="slug"
-                class="flex w-full"
-                value="{{ $post->slug }}"
-                wire:change="updatePostField('slug', $event.target.value)"
-            />
-        </label>
-        <label class="flex flex-col w-full">
-            <span class="flex w-full">intro</span>
-            <textarea
-                name="intro"
-                class="flex w-full h-20"
-                wire:change="updatePostField('intro', $event.target.value)"
-            >{{ $post->intro }}</textarea>
-        </label>
-    </details>
+    @include('livewire.includes.meta')
 </div>
+
+@push('scripts')
+    <script type="text/javascript">
+        function resizeElement(element) {
+            var offset = element.offsetHeight - element.clientHeight
+
+            element.style.height = 'auto'
+            element.style.height = element.scrollHeight + offset + 'px'
+        }
+
+        document.addEventListener('input', function(e) {
+            if (e.target.matches('[data-auto-resize]')) {
+                resizeElement(e.target)
+            }
+        }, true)
+
+        document.querySelectorAll('[data-auto-resize]').forEach(function(element) {
+            resizeElement(element)
+        })
+
+        document.addEventListener('livewire:load', function(event) {
+            window.livewire.afterDomUpdate(() => {
+                document.querySelectorAll('[data-auto-resize]').forEach(function(element) {
+                    resizeElement(element)
+                })
+            })
+        }, true)
+    </script>
+@endpush

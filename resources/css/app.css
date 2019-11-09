@@ -60,3 +60,20 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+textarea {
+    box-sizing: border-box;
+    resize: none;
+}
+
+.transition-height {
+    transition: height 250ms;
+}
+
+.transition-opacity {
+    transition: opacity 150ms;
+}
