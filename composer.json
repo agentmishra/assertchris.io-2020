@@ -10,11 +10,13 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "graham-campbell/markdown": "^11.1",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^0.3.17",
-        "nothingworks/blade-svg": "^0.3.2"
+        "nothingworks/blade-svg": "^0.3.2",
+        "scrivo/highlight.php": "^9.17"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

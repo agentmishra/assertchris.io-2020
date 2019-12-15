@@ -24,7 +24,7 @@
     @if ($block->image_arrangement == 'full')
         <button
             key="image_collapse_{{ $block->id }}"
-            class="flex w-4 h-4 mb-2 opacity-0 group-hover:opacity-100 text-blue-400 cursor-pointer"
+            class="flex w-4 h-4 opacity-0 group-hover:opacity-100 text-blue-400 cursor-pointer"
             wire:click="updateBlockField({{ $block->id }}, 'image_arrangement', 'centered')"
         >
             @icon('solid.compress-arrows-alt')

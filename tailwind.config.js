@@ -1,6 +1,6 @@
 module.exports = {
     theme: {
-        extend: {}
+        extend: {},
     },
     variants: {
         display: ["responsive", "hover", "focus", "active", "group-hover"],
@@ -8,7 +8,7 @@ module.exports = {
         borderWidth: ["responsive", "hover", "focus", "active", "group-hover"],
         borderColor: ["responsive", "hover", "focus", "active", "group-hover"],
         height: ["responsive", "hover", "focus", "active", "group-hover"],
-        padding: ["responsive", "hover", "focus", "active", "group-hover"]
+        padding: ["responsive", "hover", "focus", "active", "group-hover"],
     },
-    plugins: []
-};
+    plugins: [],
+}

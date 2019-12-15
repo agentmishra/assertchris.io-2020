@@ -9,7 +9,7 @@
         <input
             type="text"
             name="title"
-            class="flex w-full border-b-2 border-gray-300"
+            class="flex w-full focus:bg-gray-100 outline-none"
             value="{{ $post->title }}"
             wire:change="updatePostField('title', $event.target.value)"
         />
@@ -19,7 +19,7 @@
         <input
             type="text"
             name="slug"
-            class="flex w-full border-b-2 border-gray-300"
+            class="flex w-full focus:bg-gray-100 outline-none"
             value="{{ $post->slug }}"
             wire:change="updatePostField('slug', $event.target.value)"
         />
@@ -28,8 +28,9 @@
         <span class="flex w-full text-sm text-gray-500">intro</span>
         <textarea
             name="intro"
-            class="flex w-full border-b-2 border-gray-300 h-20"
+            class="flex w-full focus:bg-gray-100 outline-none"
             wire:change="updatePostField('intro', $event.target.value)"
+            data-auto-resize
         >{{ $post->intro }}</textarea>
     </label>
     <div class="flex flex-col w-full text-sm text-gray-700">

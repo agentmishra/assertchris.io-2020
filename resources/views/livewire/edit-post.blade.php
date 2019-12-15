@@ -1,12 +1,10 @@
 <div class="flex flex-col lg:flex-row w-full items-start justify-start">
-    <div class="flex flex-col w-full lg:w-2/3 mb-2 lg:pr-8 -ml-8">
+    <div class="flex flex-col w-full lg:w-2/3 mb-2 lg:pr-8 -ml-6">
+        @include('livewire.includes.add-block', [ 'position' => 0 ])
         @foreach ($blocks as $block)
-            @if ($loop->first)
-                @include('livewire.includes.add-block', [ 'position' => $block->position ])
-            @endif
             <div class="flex flex-row items-center justify-center w-full relative group">
-                <div class="flex flex-col mr-2">
-                @include('livewire.includes.actions')
+                <div class="flex flex-col mr-2 my-4">
+                    @include('livewire.includes.actions')
                 </div>
                 @if ($block->type === 'heading')
                     @include('livewire.includes.heading-block')

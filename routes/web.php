@@ -1,23 +1,23 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\ShowHome;
+use App\Models\Post;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ShowHome::class, 'handle'])->name('show-home');
 
 Route::prefix('/admin')->namespace('Admin\\')->name('admin.')->group(function() {
     Route::prefix('/posts')->namespace('Posts\\')->name('posts.')->group(function() {
         Route::get('/', 'ViewPosts@handle');
         Route::get('/{post}/edit', 'EditPost@handle')->name('edit-post');
     });
+});
+
+Route::prefix('/posts')->namespace('Posts\\')->name('posts.')->group(function() {
+    Route::get('/{post}', 'ViewPost@handle')->name('view-post');
+});
+
+// redirects ↓
+
+Route::get('/post/{post}', function (Post $post) {
+    return redirect()->route('posts.view-post', $post);
 });

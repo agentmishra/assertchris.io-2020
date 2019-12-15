@@ -1,5 +1,5 @@
-window.axios = require("axios");
-window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+window.axios = require("axios")
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -20,16 +20,16 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 window.fileToBase64 = function(file) {
     return new Promise((resolve, reject) => {
-        const reader = new FileReader();
+        const reader = new FileReader()
 
         reader.onload = function() {
-            resolve(reader.result);
-        };
+            resolve(reader.result)
+        }
 
         reader.onerror = function(error) {
-            reject(error);
-        };
+            reject(error)
+        }
 
-        reader.readAsDataURL(file);
-    });
-};
+        reader.readAsDataURL(file)
+    })
+}

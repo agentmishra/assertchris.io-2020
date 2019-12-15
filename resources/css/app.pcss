@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.transition-height {
+    transition: height 250ms;
+}
+
+.transition-opacity {
+    transition: opacity 150ms;
+}
+
+* + p {
+    @apply mt-4;
+}
+
+ol {
+    @apply list-decimal;
+    @apply ml-8;
+    @apply mt-4;
+}
+
+.hljs {
+    @apply mt-4;
+    @apply text-md;
+    @apply leading-normal;
+    @apply font-mono;
+}

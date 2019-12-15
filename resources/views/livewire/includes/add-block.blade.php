@@ -1,4 +1,4 @@
-<div class="flex w-full pl-8 pr-2">
+<div class="flex w-full pl-6">
     <div class="flex flex-row w-full h-2 transition-height items-center justify-center bg-gray-100 rounded-sm overflow-hidden" data-dwell-classes="h-8 group">
         <button wire:click="addBlock({{ $position }}, 'heading', 1)" class="flex w-4 h-4 mr-2 text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
             @icon('solid.h1')

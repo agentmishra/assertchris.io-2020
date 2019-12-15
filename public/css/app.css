@@ -15434,7 +15434,6 @@ details summary::-webkit-details-marker {
 }
 
 textarea {
-  box-sizing: border-box;
   resize: none;
 }
 
@@ -15446,6 +15445,17 @@ textarea {
 .transition-opacity {
   -webkit-transition: opacity 150ms;
   transition: opacity 150ms;
+}
+
+* + p,
+.hljs {
+  margin-top: 1rem;
+}
+
+ol {
+  list-style-type: decimal;
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
 
 @media (min-width: 640px) {

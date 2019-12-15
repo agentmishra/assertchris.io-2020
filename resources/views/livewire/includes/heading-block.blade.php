@@ -1,7 +1,7 @@
 <input
     name="heading_content_{{ $block->id }}"
     class="
-        flex w-full font-semibold m-2 focus:bg-gray-100 outline-none
+        flex w-full font-semibold my-4 focus:bg-gray-100 outline-none
         @if ($block->heading_level == 1)
             text-2xl
         @endif

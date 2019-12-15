@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full m-2">
+<div class="flex flex-col w-full my-4">
     @if ($block->image_path)
         <img
             src="https://assertchris.fra1.cdn.digitaloceanspaces.com/{{ $block->image_path }}"
@@ -16,6 +16,7 @@
         name="image_content_{{ $block->id }}"
         class="flex w-full border-l-4 border-gray-400 pl-2 focus:bg-gray-100 outline-none"
         wire:change="updateBlockField({{ $block->id }}, 'image_content', $event.target.value)"
+        rows="1"
     >{{ $block->image_content }}</textarea>
 </div>
 
