@@ -2,6 +2,7 @@
 
 @section('content')
     <h1>View Posts</h1>
+            <a href="{{ route('admin.posts.create-post') }}">create post</a>
     @foreach ($posts as $post)
         <div>
             {{ $post->title }}
