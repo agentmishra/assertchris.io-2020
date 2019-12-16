@@ -10,7 +10,8 @@ mix.js('resources/js/app.js', 'public/js')
 
 if (mix.inProduction()) {
     mix.version().purgeCss({
+        whitelist: 'fill-current',
         whitelistPatterns: [/language/, /hljs/],
-        extensions: ['html', 'js', 'php', 'svg'],
+        extensions: ['html', 'js', 'php'],
     })
 }
