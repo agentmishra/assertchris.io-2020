@@ -15399,9 +15399,20 @@ ol {
   margin-top: 1rem;
 }
 
+ul {
+  list-style-type: disc;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
 .hljs {
   line-height: 1.5;
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+a {
+  color: #4299e1;
+  text-decoration: underline;
 }
 
 @media (min-width: 640px) {
