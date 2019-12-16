@@ -18,19 +18,19 @@ textarea {
     transition: opacity 150ms;
 }
 
-* + p,
-* + blockquote,
-* + pre {
+.article * + p,
+.article * + blockquote,
+.article * + pre {
     @apply mt-4;
 }
 
-ol {
+.article ol {
     @apply list-decimal;
     @apply ml-8;
     @apply mt-4;
 }
 
-ul {
+.article ul {
     @apply list-disc;
     @apply ml-8;
     @apply mt-4;
@@ -41,7 +41,7 @@ ul {
     @apply font-mono;
 }
 
-a {
+.article a {
     @apply text-blue-500;
     @apply underline;
 }

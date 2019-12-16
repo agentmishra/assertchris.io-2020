@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="flex flex-col w-full px-4">
+    <div class="flex flex-col w-full px-4 article">
         <h1 class="text-4xl">{{ $post->title }}</h1>
         <h2 class="text-sm text-gray-500">{{ $post->created_at->format('jS F Y') }}</h2>
         @foreach ($post->blocks as $block)
