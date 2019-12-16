@@ -9,5 +9,7 @@ mix.js("resources/js/app.js", "public/js")
     .tailwind("./tailwind.config.js")
 
 if (mix.inProduction()) {
-    mix.version().purgeCss()
+    mix.version().purgeCss({
+        whitelistPatterns: [/language/, /hljs/],
+    })
 }
