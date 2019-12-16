@@ -114,11 +114,48 @@ class EditPost extends Component
         $this->update();
     }
 
-    public function reposition() {
+    public function reposition()
+    {
         $this->post->blocks()->orderBy('position', 'asc')->each(function($block, $i) {
             $block->position = $i + 1;
             $block->save();
         });
+    }
+
+    public function moveUp($block)
+    {
+        $block = Block::findOrFail($block);
+
+        $previous = $this->post->blocks()->where("position", $block->position - 1)->first();
+
+        if ($previous) {
+            $previous->position += 1;
+            $previous->save();
+        }
+
+        $block->position -= 1;
+        $block->save();
+
+        $this->reposition();
+        $this->update();
+    }
+
+    public function moveDown($block)
+    {
+        $block = Block::findOrFail($block);
+
+        $next = $this->post->blocks()->where("position", $block->position + 1)->first();
+
+        if ($next) {
+            $next->position -= 1;
+            $next->save();
+        }
+
+        $block->position += 1;
+        $block->save();
+
+        $this->reposition();
+        $this->update();
     }
 
     public function uploadImage($id, $name, $type, $size, $data)

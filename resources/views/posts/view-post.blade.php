@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
-    <div class="flex flex-col w-full px-4 mb-32">
-        <h1 class="text-3xl">{{ $post->title }}</h1>
+    <div class="flex flex-col w-full px-4">
+        <h1 class="text-4xl">{{ $post->title }}</h1>
         <h2 class="text-sm text-gray-500">{{ $post->created_at->format('jS F Y') }}</h2>
         @foreach ($post->blocks as $block)
             @if ($block->type == 'heading')
@@ -20,7 +20,9 @@
                 {!! $block->text_content_markdown !!}
             @endif
             @if ($block->type == 'note')
-                {!! $block->note_content_markdown !!}
+                <blockquote class="flex w-full p-4 bg-gray-100 mt-4">
+                    {!! $block->note_content_markdown !!}
+                </blockquote>
             @endif
             @if ($block->type == 'code')
                 {!! $block->code_content_markdown !!}
@@ -37,5 +39,17 @@
                 </div>
             @endif
         @endforeach
+    </div>
+    <div class="flex flex-col flex-grow items-center justify-center my-4 md:mt-16 md:mb-32 mx-4 md:mx-16 p-4 md:p-8 border-solid border-2 border-gray-400 bg-gray-200 text-gray-900 text-lg">
+        <h2 class="mb-2 text-3xl">Would you like me to keep you in the loop?</h2>
+        <p class="mb-8 text-md">
+            I write about all sorts of interesting code things, and I'd love to share them with you. I will only
+            send you updates from the blog, and <strong class="font-medium">will not share your email address with anyone</strong>.
+        </p>
+        <form action="https://assertchris.us12.list-manage.com/subscribe/post?u=af7934ca8606594b204011bcc&amp;id=a8e81e08e9" method="post" target="_blank" class="flex flex-row w-full md:w-2/3">
+            <input type="email" value="" name="EMAIL" class="flex flex-grow text-gray-900 border-0 border-b-2 text-base border-gray-500 focus:border-blue-300 outline-none mr-2 px-3 py-2">
+            <input type="text" name="b_af7934ca8606594b204011bcc_a8e81e08e9" tabindex="-1" value="" style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input type="submit" value="Subscribe" name="subscribe" class="px-4 py-2 bg-blue-400 text-white border-0 text-base">
+        </form>
     </div>
 @endsection

@@ -18,7 +18,9 @@ textarea {
     transition: opacity 150ms;
 }
 
-* + p {
+* + p,
+* + blockquote,
+* + pre {
     @apply mt-4;
 }
 
@@ -29,8 +31,6 @@ ol {
 }
 
 .hljs {
-    @apply mt-4;
-    @apply text-md;
     @apply leading-normal;
     @apply font-mono;
 }
