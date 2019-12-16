@@ -13,8 +13,8 @@
         >
             <h2 class="text-2xl">{{ $post->title }}</h2>
             <h3 class="text-sm text-gray-500">{{ $post->created_at->format('jS F Y') }}</h3>
-            <p class="my-2">{!! $post->intro_markdown !!}</p>
-            <span class="text-blue-500 underline">Read this article</span>
+            {!! $post->intro_markdown !!}
+            <p class="text-blue-500 underline">Read this article</p>
         </a>
     @endforeach
     {{ $posts->links('vendor/pagination/simple-default') }}
