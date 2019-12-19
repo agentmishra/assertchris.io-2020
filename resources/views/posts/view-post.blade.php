@@ -20,7 +20,7 @@
                 {!! $block->text_content_markdown !!}
             @endif
             @if ($block->type == 'note')
-                <blockquote class="flex w-full p-4 bg-gray-100 mt-4">
+                <blockquote class="flex w-full p-4 bg-gray-100">
                     {!! $block->note_content_markdown !!}
                 </blockquote>
             @endif
