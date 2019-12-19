@@ -4,8 +4,10 @@ namespace App\Models;
 
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-class Post extends Model
+class Post extends Model implements Feedable
 {
     protected  $fillable = [
         'title',
@@ -26,5 +28,22 @@ class Post extends Model
     public function getIntroMarkdownAttribute()
     {
         return Markdown::convertToHtml($this->intro);
+    }
+
+    public static function getFeedItems()
+    {
+        return static::all();
+    }
+
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id(route('posts.view-post', $this))
+            ->title($this->title)
+            ->summary($this->intro)
+            ->updated($this->updated_at)
+            ->link(route('posts.view-post', $this))
+            ->category('post')
+            ->author('Christopher Pitt');
     }
 }

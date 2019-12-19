@@ -8,13 +8,14 @@
         <title>{{ config('app.name', 'assertchris.io') }}</title>
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link href="{{ mix('css/highlight.css') }}" rel="stylesheet">
+        @include('feed::links')
         @livewireAssets
     </head>
-    <body>
+    <body class="py-32">
         <div class="container max-w-4xl mx-auto px-2 text-gray-700 text-lg font-light">
             <nav
                 class="
-                    flex flex-row items-center justify-start mt-32 px-4
+                    flex flex-row items-center justify-start px-4
                     @if(request()->is('/'))
                         mb-8
                     @else
@@ -32,6 +33,7 @@
                 @endif
             </nav>
             @yield('content')
+            @include('includes.footer')
             <script src="{{ mix('js/app.js') }}"></script>
             @stack('scripts')
         </div>

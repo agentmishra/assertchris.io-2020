@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav class="flex flex-row mb-32 px-4">
+    <nav class="flex flex-row mb-8 px-4">
         @if ($paginator->onFirstPage())
             <span class="text-gray-700">@lang('pagination.previous')</span>
         @else

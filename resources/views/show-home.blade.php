@@ -1,6 +1,6 @@
-@extends("layout")
+@extends('layout')
 
-@section("content")
+@section('content')
     @foreach($posts as $post)
         <a
             href="{{ route('posts.view-post', $post) }}"

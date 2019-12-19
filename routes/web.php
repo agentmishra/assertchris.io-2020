@@ -11,6 +11,8 @@ use App\Models\Post;
 
 Route::get('/', [ShowHome::class, 'handle'])->name('show-home');
 
+Route::feeds();
+
 Route::prefix('/admin')->namespace('Admin\\')->name('admin.')->middleware('auth')->group(function() {
     Route::prefix('/posts')->namespace('Posts\\')->name('posts.')->group(function() {
         Route::get('/', [ViewPosts::class, 'handle'])->name('view-posts');

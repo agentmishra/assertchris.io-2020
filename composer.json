@@ -17,7 +17,8 @@
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^0.3.17",
         "nothingworks/blade-svg": "^0.3.2",
-        "scrivo/highlight.php": "^9.17"
+        "scrivo/highlight.php": "^9.17",
+        "spatie/laravel-feed": "^2.6"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
