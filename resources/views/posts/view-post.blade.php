@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex flex-col w-full px-4 article">
         <h1 class="text-4xl">{{ $post->title }}</h1>
-        <h2 class="text-sm text-gray-500">{{ $post->created_at->format('jS F Y') }}</h2>
+        <div class="text-sm text-gray-500">{{ $post->created_at->format('jS F Y') }}</div>
         @foreach ($post->blocks as $block)
             @if ($block->type == 'heading')
                 @if ($block->heading_level == '1')
