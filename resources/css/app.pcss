@@ -24,6 +24,10 @@ textarea {
     @apply mt-4;
 }
 
+.article pre + blockquote {
+    @apply mt-0;
+}
+
 .article ol {
     @apply list-decimal;
     @apply ml-8;
@@ -42,14 +46,6 @@ textarea {
     @apply border-4;
     @apply border-gray-100;
     @apply p-4;
-}
-
-* + blockquote {
-    @apply mt-4;
-}
-
-pre + blockquote {
-    @apply mt-0;
 }
 
 .article a {
