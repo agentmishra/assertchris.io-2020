@@ -27,7 +27,7 @@ class Post extends Model implements Feedable
 
     public function getIntroMarkdownAttribute()
     {
-        return Markdown::convertToHtml($this->intro);
+        return Markdown::convertToHtml($this->intro ? $this->intro : '');
     }
 
     public static function getFeedItems()
