@@ -1,8 +1,8 @@
 <textarea
     type="text"
-    name="text_content_{{ $block->id }}"
+    name="text_content_{{ $this->block->id }}"
     class="flex w-full my-4 focus:bg-gray-100 outline-none"
-    wire:change="updateBlockField({{ $block->id }}, 'text_content', $event.target.value)"
-    data-auto-resize
+    wire:change="updateBlock('text_content', $event.target.value)"
+    data-auto-resize="new"
     rows="1"
->{{ $block->text_content }}</textarea>
+>{{ $this->block->text_content }}</textarea>

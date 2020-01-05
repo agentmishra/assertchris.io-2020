@@ -15,7 +15,7 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "livewire/livewire": "^0.3.17",
+        "livewire/livewire": "^0.5.3",
         "nothingworks/blade-svg": "^0.3.2",
         "scrivo/highlight.php": "^9.17",
         "spatie/laravel-feed": "^2.6"

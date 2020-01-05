@@ -4,53 +4,34 @@ namespace App\Http\Livewire;
 
 use App\Models\Block;
 use App\Models\Post;
-use Illuminate\Support\Str;
 use Livewire\Component;
 
 class EditPost extends Component
 {
-    protected $post = null;
+    protected $listeners = [
+        'onPostUpdated' => 'update',
+        'onRemoveBlock' => 'removeBlock',
+        'onMoveBlockUp' => 'moveBlockUp',
+        'onMoveBlockDown' => 'moveBlockDown',
+    ];
 
-    protected $listeners = ['uploadImage' => 'uploadImage'];
+    public $post;
+    public $changedAt;
 
-    public $updated_at = null;
-
-
-    public function mount($id)
+    public function mount(Post $post)
     {
-        $this->post = Post::find($id);
+        $this->post = $post;
     }
 
     public function update()
     {
         $this->post->fresh();
-        $this->updated_at = now()->format('j F Y, g:ia');
+        $this->changedAt = now()->timestamp;
     }
 
-    public function updatePostField($field, $value)
+    public function removeBlock($blockId)
     {
-        $this->post->{$field} = $value;
-        $this->post->save();
-
-        if ($field === 'slug') {
-            $this->redirect(route('admin.posts.edit-post', $this->post));
-        }
-
-        $this->update();
-    }
-
-    public function updateBlockField($id, $field, $value)
-    {
-        $block = $this->post->blocks()->find($id);
-        $block->{$field} = $value;
-        $block->save();
-
-        $this->update();
-    }
-
-    public function removeBlock($id)
-    {
-        $block = $this->post->blocks()->find($id);
+        $block = $this->post->blocks()->find($blockId);
         $block->delete();
 
         $this->reposition();
@@ -122,11 +103,11 @@ class EditPost extends Component
         });
     }
 
-    public function moveUp($block)
+    public function moveBlockUp($blockId)
     {
-        $block = Block::findOrFail($block);
+        $block = Block::findOrFail($blockId);
 
-        $previous = $this->post->blocks()->where("position", $block->position - 1)->first();
+        $previous = $this->post->blocks()->where('position', $block->position - 1)->first();
 
         if ($previous) {
             $previous->position += 1;
@@ -140,11 +121,11 @@ class EditPost extends Component
         $this->update();
     }
 
-    public function moveDown($block)
+    public function moveBlockDown($blockId)
     {
-        $block = Block::findOrFail($block);
+        $block = Block::findOrFail($blockId);
 
-        $next = $this->post->blocks()->where("position", $block->position + 1)->first();
+        $next = $this->post->blocks()->where('position', $block->position + 1)->first();
 
         if ($next) {
             $next->position -= 1;
@@ -158,28 +139,8 @@ class EditPost extends Component
         $this->update();
     }
 
-    public function uploadImage($id, $name, $type, $size, $data)
-    {
-        $raw = substr($data, strpos($data, ',') + 1);
-        $raw = base64_decode($raw);
-
-        $uuid = (string) Str::uuid();
-        $extension = pathinfo($name, PATHINFO_EXTENSION);
-
-        app('filesystem')->disk('spaces')->put("portfolio/images/{$uuid}.{$extension}", $raw, 'public');
-
-        $block = $this->post->blocks()->find($id);
-        $block->image_path = "portfolio/images/{$uuid}.{$extension}";
-        $block->save();
-        
-        $this->update();
-    }
-
     public function render()
     {
-        $post = $this->post;
-        $blocks = $post->blocks()->orderBy('position', 'asc')->get();
-
-        return view('livewire.edit-post', compact('post', 'blocks'));
+        return view('livewire.edit-post');
     }
 }

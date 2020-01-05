@@ -1,31 +1,19 @@
-<div class="flex flex-col lg:flex-row w-full items-start justify-start">
-    <div class="flex flex-col w-full lg:w-2/3 mb-2 lg:pr-8 -ml-6">
-        @include('livewire.includes.add-block', [ 'position' => 0 ])
-        @foreach ($blocks as $block)
-            <div class="flex flex-row items-center justify-center w-full relative group">
-                <div class="flex flex-col mr-2 my-4">
-                    @include('livewire.includes.actions')
-                </div>
-                @if ($block->type === 'heading')
-                    @include('livewire.includes.heading-block')
-                @endif
-                @if ($block->type === 'text')
-                    @include('livewire.includes.text-block')
-                @endif
-                @if ($block->type === 'image')
-                    @include('livewire.includes.image-block')
-                @endif
-                @if ($block->type === 'note')
-                    @include('livewire.includes.note-block')
-                @endif
-                @if ($block->type === 'code')
-                    @include('livewire.includes.code-block')
-                @endif
-            </div>
-            @include('livewire.includes.add-block', [ 'position' => $block->position + 1 ])
-        @endforeach
+<div class="flex flex-col w-full pb-32">
+    @livewire('upload-post-block-image')
+    <h1 class="text-2xl font-semibold my-8">
+        Edit Post:
+        <span class="font-normal">{{ $this->post->title }}</span>
+    </h1>
+    <div class="flex flex-col lg:flex-row w-full items-start justify-start">
+        <div class="flex flex-col w-full lg:w-2/3 mb-2 lg:pr-8 -ml-6">
+            @include('livewire.includes.add-block', ['position' => 0])
+            @foreach ($this->post->blocks()->orderBy('position', 'asc')->get() as $block)
+                @livewire('edit-post-block', $block, key('block' . $block->toJson()))
+                @include('livewire.includes.add-block', ['position' => $block->position + 1])
+            @endforeach
+        </div>
+        @livewire('edit-post-meta', $this->post)
     </div>
-    @include('livewire.includes.meta')
 </div>
 
 @push('scripts')
@@ -35,6 +23,10 @@
 
             element.style.height = 'auto'
             element.style.height = element.scrollHeight + offset + 'px'
+
+            if (element.getAttribute('data-auto-resize') !== 'always') {
+                element.setAttribute('data-auto-resize', '')
+            }
         }
 
         document.addEventListener('input', function(e) {
@@ -43,13 +35,19 @@
             }
         }, true)
 
+        window.addEventListener('resize', function(e) {
+            document.querySelectorAll('[data-auto-resize]').forEach(function(element) {
+                resizeElement(element)
+            })
+        })
+
         document.querySelectorAll('[data-auto-resize]').forEach(function(element) {
             resizeElement(element)
         })
 
-        document.addEventListener('livewire:load', function(event) {
+        document.addEventListener('livewire:load', function(e) {
             window.livewire.afterDomUpdate(() => {
-                document.querySelectorAll('[data-auto-resize]').forEach(function(element) {
+                document.querySelectorAll("[data-auto-resize='new'], [data-auto-resize='always']").forEach(function(element) {
                     resizeElement(element)
                 })
             })

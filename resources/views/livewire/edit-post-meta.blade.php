@@ -10,8 +10,8 @@
             type="text"
             name="title"
             class="flex w-full focus:bg-gray-100 outline-none"
-            value="{{ $post->title }}"
-            wire:change="updatePostField('title', $event.target.value)"
+            value="{{ $this->post->title }}"
+            wire:change="updateField('title', $event.target.value)"
         />
     </label>
     <label class="flex flex-col w-full mb-4">
@@ -20,8 +20,8 @@
             type="text"
             name="slug"
             class="flex w-full focus:bg-gray-100 outline-none"
-            value="{{ $post->slug }}"
-            wire:change="updatePostField('slug', $event.target.value)"
+            value="{{ $this->post->slug }}"
+            wire:change="updateField('slug', $event.target.value)"
         />
     </label>
     <label class="flex flex-col w-full mb-4">
@@ -29,16 +29,16 @@
         <textarea
             name="intro"
             class="flex w-full focus:bg-gray-100 outline-none"
-            wire:change="updatePostField('intro', $event.target.value)"
-            data-auto-resize
-        >{{ $post->intro }}</textarea>
+            wire:change="updateField('intro', $event.target.value)"
+            data-auto-resize="always"
+        >{{ $this->post->intro }}</textarea>
     </label>
     <div class="flex flex-col w-full text-sm text-gray-700">
         <label class="flex flex-row w-full mb-1">
-            Created <span class="font-semibold ml-1">{{ $post->created_at->format('j F Y, g:ia') }}</span>
+            Created <span class="font-semibold ml-1">{{ $this->post->created_at->format('j F Y, g:ia') }}</span>
         </label>
         <label class="flex flex-row w-full mb-1">
-            Updated <span class="font-semibold ml-1">{{ $updated_at ?? $post->updated_at->format('j F Y, g:ia') }}</span>
+            Updated <span class="font-semibold ml-1">{{ $updated_at ?? $this->post->updated_at->format('j F Y, g:ia') }}</span>
         </label>
         <label wire:loading.class="opacity-100" class="flex w-4 h-4 mb-1 opacity-0 transition-opacity">
             @icon('solid.save')

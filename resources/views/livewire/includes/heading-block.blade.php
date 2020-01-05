@@ -1,17 +1,17 @@
 <input
-    name="heading_content_{{ $block->id }}"
+    name="heading_content_{{ $this->block->id }}"
     class="
         flex w-full font-semibold my-4 focus:bg-gray-100 outline-none
-        @if ($block->heading_level == 1)
+        @if ($this->block->heading_level == 1)
             text-2xl
         @endif
-        @if ($block->heading_level == 2)
+        @if ($this->block->heading_level == 2)
             text-xl
         @endif
-        @if ($block->heading_level == 3)
+        @if ($this->block->heading_level == 3)
             text-lg
         @endif
     "
-    value="{{ $block->heading_content }}"
-    wire:change="updateBlockField({{ $block->id }}, 'heading_content', $event.target.value)"
+    value="{{ $this->block->heading_content }}"
+    wire:change="updateBlock('heading_content', $event.target.value)"
 />
