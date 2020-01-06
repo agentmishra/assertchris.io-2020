@@ -7,13 +7,13 @@
         @foreach ($post->blocks as $block)
             @if ($block->type == 'heading')
                 @if ($block->heading_level == '1')
-                    <h1 class="flex text-3xl font-semibold" id="{{ preg_replace(['/[^0-9a-z-_]+/', '/[-]{2,}/'], ['-', '-'], strtolower($block->heading_content)) }}">{{ $block->heading_content }}</h1>
+                    <h1 class="flex text-3xl font-semibold" id="{{ $block->heading_id }}">{{ $block->heading_content }}</h1>
                 @endif
                 @if ($block->heading_level == '2')
-                    <h2 class="flex text-2xl font-semibold" id="{{ preg_replace(['/[^0-9a-z-_]+/', '/[-]{2,}/'], ['-', '-'], strtolower($block->heading_content)) }}">{{ $block->heading_content }}</h2>
+                    <h2 class="flex text-2xl font-semibold" id="{{ $block->heading_id }}">{{ $block->heading_content }}</h2>
                 @endif
                 @if ($block->heading_level == '3')
-                    <h3 class="flex text-xl font-semibold" id="{{ preg_replace(['/[^0-9a-z-_]+/', '/[-]{2,}/'], ['-', '-'], strtolower($block->heading_content)) }}">{{ $block->heading_content }}</h3>
+                    <h3 class="flex text-xl font-semibold" id="{{ $block->heading_id }}">{{ $block->heading_content }}</h3>
                 @endif
             @endif
             @if ($block->type == 'text')

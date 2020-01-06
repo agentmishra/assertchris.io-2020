@@ -68,4 +68,15 @@ class Block extends Model
     {
         return app('filesystem')->disk('spaces')->url($this->image_path);
     }
+
+    public function getHeadingIdAttribute()
+    {
+        $id = $this->heading_content;
+        $id = strtolower($id);
+        $id = preg_replace('/[^0-9a-z-_]+/', '-', $id);
+        $id = preg_replace('/[-]{2,}/', '-', $id);
+        $id = trim($id, '-');
+
+        return $id;
+    }
 }
