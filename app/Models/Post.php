@@ -31,7 +31,9 @@ class Post extends Model implements Feedable
 
     public function getIntroMarkdownAttribute()
     {
-        return Markdown::convertToHtml($this->intro ? $this->intro : '');
+        return cache()->remember('post-intro-markdown-' . $this->id, now()->addYears(1), function () {
+            return Markdown::convertToHtml($this->intro ? $this->intro : '');
+        });
     }
 
     public static function getFeedItems()
@@ -49,5 +51,10 @@ class Post extends Model implements Feedable
             ->link(route('posts.view-post', $this))
             ->category('post')
             ->author('Christopher Pitt');
+    }
+
+    public function forget()
+    {
+        cache()->forget('post-intro-markdown-' . $this->id);
     }
 }

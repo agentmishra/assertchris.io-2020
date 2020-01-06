@@ -8,6 +8,8 @@ class ForgetPost
 {
     public function handle(Post $post)
     {
+        $post->forget();
+
         $post->blocks->each(function($block) {
             $block->forget();
         });
