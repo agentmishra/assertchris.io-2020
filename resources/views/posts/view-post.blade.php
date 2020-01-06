@@ -45,7 +45,7 @@
 
 @push('scripts')
     <script type="text/javascript">
-        setTimeout(function() {
+        setInterval(function() {
             document.querySelectorAll('.article pre').forEach(function(element) {
                 element.style.display = 'none'
                 element.style.display = 'block'
