@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Posts\CreatePost;
 use App\Http\Controllers\Admin\Posts\EditPost;
+use App\Http\Controllers\Admin\Posts\ForgetPost;
 use App\Http\Controllers\Admin\Posts\ViewPosts;
 use App\Http\Controllers\ShowHome;
 use App\Http\Controllers\Posts\ViewPost;
@@ -18,6 +19,7 @@ Route::prefix('/admin')->namespace('Admin\\')->name('admin.')->middleware('auth'
         Route::get('/', [ViewPosts::class, 'handle'])->name('view-posts');
         Route::get('/create', [CreatePost::class, 'handle'])->name('create-post');
         Route::get('/{post}/edit', [EditPost::class, 'handle'])->name('edit-post');
+        Route::get('/{post}/forget', [ForgetPost::class, 'handle'])->name('forget-post');
     });
 });
 

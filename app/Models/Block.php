@@ -85,4 +85,11 @@ class Block extends Model
 
         return $id;
     }
+
+    public function forget()
+    {
+        cache()->forget('block-text-content-markdown-' . $this->id);
+        cache()->forget('block-note-content-markdown-' . $this->id);
+        cache()->forget('block-code-content-markdown-' . $this->id);
+    }
 }

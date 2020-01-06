@@ -16,6 +16,7 @@
             </span>
             {{ $post->title }}
             <a href="{{ route('admin.posts.edit-post', $post) }}" class="text-blue-500 underline ml-2">edit</a>
+            <a href="{{ route('admin.posts.forget-post', $post) }}" class="text-blue-500 underline ml-2">forget</a>
         </div>
     @endforeach
     {{ $posts->links('vendor/pagination/simple-default') }}
