@@ -1,9 +1,12 @@
 <div class="flex flex-col w-full pb-32">
     @livewire('upload-post-block-image')
-    <h1 class="text-2xl font-semibold my-8">
-        Edit Post:
-        <span class="font-normal">{{ $this->post->title }}</span>
-    </h1>
+    <div class="my-8">
+        <h1 class="text-2xl font-semibold">
+            Edit Post:
+            <span class="font-normal">{{ $this->post->title }}</span>
+        </h1>
+        <a href="{{ route('admin.posts.view-posts') }}" class="text-blue-500 underline">view posts</a>
+    </div>
     <div class="flex flex-col lg:flex-row w-full items-start justify-start">
         <div class="flex flex-col w-full lg:w-2/3 mb-2 lg:pr-8 -ml-6">
             @include('livewire.includes.add-block', ['position' => 0])

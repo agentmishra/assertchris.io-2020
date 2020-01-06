@@ -8,7 +8,7 @@ class ShowHome extends Controller
 {
     public function handle()
     {
-        $posts = Post::latest()->paginate(10);
+        $posts = Post::latest()->whereNotNull('published_at')->paginate(10);
 
         return view('show-home', compact('posts'));
     }

@@ -25,6 +25,16 @@
         />
     </label>
     <label class="flex flex-col w-full mb-4">
+        <span class="flex w-full text-sm text-gray-500">published at</span>
+        <input
+            type="text"
+            name="slug"
+            class="flex w-full focus:bg-gray-100 outline-none"
+            value="{{ $this->post->published_at }}"
+            wire:change="updateField('published_at', $event.target.value)"
+        />
+    </label>
+    <label class="flex flex-col w-full mb-4">
         <span class="flex w-full text-sm text-gray-500">intro</span>
         <textarea
             name="intro"

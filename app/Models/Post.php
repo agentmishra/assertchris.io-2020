@@ -15,6 +15,10 @@ class Post extends Model implements Feedable
         'intro',
     ];
 
+    protected $casts = [
+        'published_at' => 'date',
+    ];
+
     public function getRouteKeyName()
     {
         return 'slug';

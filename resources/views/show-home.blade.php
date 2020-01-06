@@ -12,7 +12,7 @@
             "
         >
             <h2 class="text-2xl">{{ $post->title }}</h2>
-            <div class="text-sm text-gray-500">{{ $post->created_at->format('jS F Y') }}</div>
+            <div class="text-sm text-gray-500">{{ $post->published_at->format('jS F Y') }}</div>
             <div class="my-4">{!! $post->intro_markdown !!}</div>
             <div class="text-blue-500 underline">Read this article</div>
         </a>
