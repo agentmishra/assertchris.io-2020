@@ -45,9 +45,11 @@
 
 @push('scripts')
     <script type="text/javascript">
-        document.querySelectorAll('.article pre').forEach(function(element) {
-            element.style.display = 'none'
-            element.style.display = 'block'
-        })
+        setTimeout(function() {
+            document.querySelectorAll('.article pre').forEach(function(element) {
+                element.style.display = 'none'
+                element.style.display = 'block'
+            })
+        }, 250)
     </script>
 @endpush
