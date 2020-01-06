@@ -34,21 +34,21 @@ class Block extends Model
 
     public function getTextContentMarkdownAttribute()
     {
-        return cache()->remember('block-text-content-markdown-' . $this->id, now()->addMinutes(60), function () {
+        return cache()->remember('block-text-content-markdown-' . $this->id, now()->addYears(1), function () {
             return Markdown::convertToHtml($this->text_content);
         });
     }
 
     public function getNoteContentMarkdownAttribute()
     {
-        return cache()->remember('block-note-content-markdown-' . $this->id, now()->addMinutes(60), function () {
+        return cache()->remember('block-note-content-markdown-' . $this->id, now()->addYears(1), function () {
             return Markdown::convertToHtml($this->note_content);
         });
     }
 
     public function getCodeContentMarkdownAttribute()
     {
-        return cache()->remember('block-code-content-markdown-' . $this->id, now()->addMinutes(60), function () {
+        return cache()->remember('block-code-content-markdown-' . $this->id, now()->addYears(1), function () {
             preg_match("/^```([^\\n]+)/", $this->code_content, $matches);
 
             if (count($matches) < 2) {
