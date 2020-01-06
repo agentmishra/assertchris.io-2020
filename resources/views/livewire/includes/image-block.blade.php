@@ -19,23 +19,3 @@
         rows="1"
     >{{ $this->block->image_content }}</textarea>
 </div>
-
-@push('scripts')
-    <script type="text/javascript">
-        document.addEventListener('change', function(e) {
-            var target = e.target
-
-            if (target.matches("[type='file']")) {
-                var blockId = target.getAttribute('data-block-id')
-
-                var name = target.files[0].name
-                var type = target.files[0].type
-                var size = target.files[0].size
-
-                fileToBase64(target.files[0]).then(function(data) {
-                    window.livewire.emit('onUploadImage', blockId, name, type, size, data)
-                })
-            }
-        }, true)
-    </script>
-@endpush

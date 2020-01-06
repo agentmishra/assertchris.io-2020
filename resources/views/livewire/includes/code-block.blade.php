@@ -6,16 +6,3 @@
     data-code-tab
     rows="1"
 >{{ $this->block->code_content }}</textarea>
-
-@push('scripts')
-    <script>
-        document.addEventListener('keydown', function(e) {
-            if (e.target.matches('[data-code-tab]')) {
-                if (e.key == 'Tab') {
-                    e.preventDefault()
-                    document.execCommand('insertText', false, ' '.repeat(4))
-                }
-            }
-        }, true)
-    </script>
-@endpush

@@ -21,6 +21,8 @@
 
 @push('scripts')
     <script type="text/javascript">
+        // RESIZE ELEMENTS
+
         function resizeElement(element) {
             var offset = element.offsetHeight - element.clientHeight
 
@@ -54,6 +56,71 @@
                     resizeElement(element)
                 })
             })
+        }, true)
+
+        // ADD BLOCKS
+
+        document.addEventListener('mouseenter', function(e) {
+            var target = e.target
+
+            if (target.matches('[data-dwell-classes]')) {
+                var existing = target.getAttribute('data-dwell-timer')
+                var classes = target.getAttribute('data-dwell-classes').split(' ')
+
+                if (existing) {
+                    clearTimeout(existing)
+                }
+
+                var created = setTimeout(function() {
+                    target.classList.add(...classes)
+                }, 250)
+
+                target.setAttribute('data-dwell-timer', created)
+            }
+        }, true)
+
+        document.addEventListener('mouseleave', function(e) {
+            var target = e.target
+
+            if (target.matches('[data-dwell-classes]')) {
+                var existing = target.getAttribute('data-dwell-timer')
+                var classes = target.getAttribute('data-dwell-classes').split(' ')
+
+                if (existing) {
+                    clearTimeout(existing)
+                }
+
+                target.classList.remove(...classes)
+            }
+        }, true)
+
+        // CODE BLOCKS
+
+        document.addEventListener('keydown', function(e) {
+            if (e.target.matches('[data-code-tab]')) {
+                if (e.key == 'Tab') {
+                    e.preventDefault()
+                    document.execCommand('insertText', false, ' '.repeat(4))
+                }
+            }
+        }, true)
+
+        // IMAGE BLOCKS
+
+        document.addEventListener('change', function(e) {
+            var target = e.target
+
+            if (target.matches("[type='file']")) {
+                var blockId = target.getAttribute('data-block-id')
+
+                var name = target.files[0].name
+                var type = target.files[0].type
+                var size = target.files[0].size
+
+                fileToBase64(target.files[0]).then(function(data) {
+                    window.livewire.emit('onUploadImage', blockId, name, type, size, data)
+                })
+            }
         }, true)
     </script>
 @endpush
