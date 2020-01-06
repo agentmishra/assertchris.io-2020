@@ -1,4 +1,4 @@
-<details class="flex flex-col w-full lg:w-1/3 mb-2 group" open wire:ignore.self>
+<details class="flex flex-col w-full relative lg:sticky lg:top-0 lg:w-1/3 mb-2 group" open wire:ignore.self>
     <summary class="block mb-4 outline-none cursor-pointer">
         <div class="flex flex-row items-center justify-center px-2 h-8 align-middle bg-gray-100 rounded-sm outline-none text-xs text-gray-500">
             meta
