@@ -11,7 +11,7 @@
         @include('feed::links')
         @livewireAssets
     </head>
-    <body class="py-32">
+    <body class="py-8 md:py-16 lg:py-32">
         <div class="container max-w-4xl mx-auto px-2 text-gray-700 text-lg font-light">
             <nav
                 class="
