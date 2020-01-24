@@ -32,6 +32,50 @@ Route::get('/users/handle-google-callback', [HandleGoogleCallback::class, 'handl
 
 // redirects ↓
 
-Route::get('/post/{post}', function (Post $post) {
+Route::get('/post/{post}', function(Post $post) {
     return redirect()->route('posts.view-post', $post);
+});
+
+
+// debugging ↓
+
+Route::get('/wealth-check/parent', function() {
+    return <<<EOT
+        <iframe src="/wealth-check/child" width="500px" height="250px"></iframe>
+        <script>
+            window.addEventListener('message', function(e) {
+                var parts = e.data.split('|')
+
+                if (parts[0] == 'wealth-challenge-submission-success') {
+                    window.location.href = `https://www.development.indief.in/wealth-check/intro#id=\${parts[1]}`
+                }
+            })
+        </script>
+    EOT;
+});
+
+Route::get('/wealth-check/child', function() {
+    return <<<EOT
+        <button>submit</button>
+        <div></div>
+        <script>
+            var button = document.querySelector('button')
+            var redirecting = document.querySelector('div')
+
+            button.addEventListener('click', function(e) {
+                var seconds = 5
+
+                var handle = setInterval(function() {
+                    redirecting.innerHTML = `Redirecting in \${seconds}...`
+
+                    seconds--
+
+                    if (seconds < 0) {
+                        window.parent.postMessage('wealth-challenge-submission-success|123-456', '*')
+                        clearTimeout(handle)
+                    }
+                }, 1000)
+            })
+        </script>
+    EOT;
 });
